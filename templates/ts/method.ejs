@@ -6,13 +6,14 @@
     inputType,
     outputType
   } = method;
+  const { axios } = config;
 
   const http = helper.mapHTTPOptions(options.http);
   const request = helper.mapFieldTypeName(inputType, filename).type;
   const response = helper.mapFieldTypeName(outputType, filename).type;
 
 %>
-export class <%= name %> implements APIRequest<<%= request %>, <%= response %>> {
+export class <%= name %> implements <%_ if (axios) { %>Axios<% } %>APIRequest<<%= request %>, <%= response %>> {
   _response?: <%=response%>
   path = "<%= http.path %>";
   method: HTTPMethod = "<%= http.method %>";

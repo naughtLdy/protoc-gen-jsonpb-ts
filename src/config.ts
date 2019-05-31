@@ -16,12 +16,13 @@ interface Options {
   config: string;
   jsonFormat: boolean;
   ignorePackage: boolean;
+  axios: boolean;
   enumFormat: "stringLiteral" | "enum";
 }
 
 namespace Options {
   export function enumerate(): (keyof Options)[] {
-    return ["config", "jsonFormat", "ignorePackage", "enumFormat"];
+    return ["config", "jsonFormat", "ignorePackage", "axios", "enumFormat"];
   }
   export function enumerateEnumFormat(): Options["enumFormat"][] {
     return ["stringLiteral", "enum"];
@@ -33,6 +34,7 @@ export class Config {
     jsonFormat: true,
     config: path.join(process.cwd(), CONFIG_FILENAME),
     ignorePackage: false,
+    axios: false,
     enumFormat: "enum"
   };
 
@@ -49,6 +51,10 @@ export class Config {
       options.ignorePackage !== undefined
         ? options.ignorePackage
         : this.defaultOptions.ignorePackage;
+    const axios =
+      options.axios !== undefined
+        ? options.axios
+        : this.defaultOptions.axios;
     const enumFormat = options.enumFormat || this.defaultOptions.enumFormat;
     const config = options.config || this.defaultOptions.config;
 
@@ -56,6 +62,7 @@ export class Config {
       jsonFormat,
       config,
       ignorePackage,
+      axios,
       enumFormat
     });
   }

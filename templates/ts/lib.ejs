@@ -1,1 +1,9 @@
+<%
+const { axios } = config;
+_%>
+<%_ if (axios) { %>
+import { APIRequest } from "protoc-gen-jsonpb-ts";
+import { Method as HTTPMethod } from "axios";
+<%_ } else { %>
 import { APIRequest, HTTPMethod } from "protoc-gen-jsonpb-ts";
+<% } %>

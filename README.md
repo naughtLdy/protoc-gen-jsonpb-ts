@@ -47,6 +47,7 @@ This plugin looks for a config file named `protoc-gen-tsconfig.json` and loads s
 {
   ignorePackage: boolean; // defalut false
   jsonFormat: boolean;    // default true
+  axios: boolean;         // default false
 }
 ```
 
@@ -65,6 +66,10 @@ By default, use `package` as a `namespace`. If true, `namespace` will not be mad
 - `jsonFormat`
 
 By default, the well-known type is changed according to [this specification](https://developers.google.com/protocol-buffers/docs/proto3#json). If true, you can use all types as it is.
+
+- `axios`
+
+By default, HTTP method type use `HTTPMethod`. If true, [axios](https://github.com/axios/axios) HTTP method.
 
 ## Examples
 
